@@ -39,8 +39,12 @@ func NewGreeterAPI(spec *loads.Document) *GreeterAPI {
 
 		JSONConsumer: runtime.JSONConsumer(),
 
-		TxtProducer: runtime.TextProducer(),
+		JSONProducer: runtime.JSONProducer(),
+		TxtProducer:  runtime.TextProducer(),
 
+		GetCIRHandler: GetCIRHandlerFunc(func(params GetCIRParams) middleware.Responder {
+			return middleware.NotImplemented("operation GetCIR has not yet been implemented")
+		}),
 		GetGreetingHandler: GetGreetingHandlerFunc(func(params GetGreetingParams) middleware.Responder {
 			return middleware.NotImplemented("operation GetGreeting has not yet been implemented")
 		}),
@@ -73,10 +77,15 @@ type GreeterAPI struct {
 	//   - application/json
 	JSONConsumer runtime.Consumer
 
+	// JSONProducer registers a producer for the following mime types:
+	//   - application/json
+	JSONProducer runtime.Producer
 	// TxtProducer registers a producer for the following mime types:
 	//   - text/plain
 	TxtProducer runtime.Producer
 
+	// GetCIRHandler sets the operation handler for the get c i r operation
+	GetCIRHandler GetCIRHandler
 	// GetGreetingHandler sets the operation handler for the get greeting operation
 	GetGreetingHandler GetGreetingHandler
 	// ServeError is called when an error is received, there is a default handler
@@ -141,10 +150,16 @@ func (o *GreeterAPI) Validate() error {
 		unregistered = append(unregistered, "JSONConsumer")
 	}
 
+	if o.JSONProducer == nil {
+		unregistered = append(unregistered, "JSONProducer")
+	}
 	if o.TxtProducer == nil {
 		unregistered = append(unregistered, "TxtProducer")
 	}
 
+	if o.GetCIRHandler == nil {
+		unregistered = append(unregistered, "GetCIRHandler")
+	}
 	if o.GetGreetingHandler == nil {
 		unregistered = append(unregistered, "GetGreetingHandler")
 	}
@@ -194,6 +209,8 @@ func (o *GreeterAPI) ProducersFor(mediaTypes []string) map[string]runtime.Produc
 	result := make(map[string]runtime.Producer, len(mediaTypes))
 	for _, mt := range mediaTypes {
 		switch mt {
+		case "application/json":
+			result["application/json"] = o.JSONProducer
 		case "text/plain":
 			result["text/plain"] = o.TxtProducer
 		}
@@ -236,6 +253,10 @@ func (o *GreeterAPI) initHandlerCache() {
 		o.handlers = make(map[string]map[string]http.Handler)
 	}
 
+	if o.handlers["GET"] == nil {
+		o.handlers["GET"] = make(map[string]http.Handler)
+	}
+	o.handlers["GET"]["/cir"] = NewGetCIR(o.context, o.GetCIRHandler)
 	if o.handlers["GET"] == nil {
 		o.handlers["GET"] = make(map[string]http.Handler)
 	}

@@ -9,6 +9,7 @@ import (
 	"github.com/go-openapi/runtime/middleware"
 	"github.com/go-openapi/swag"
 
+	"github.com/vbatts/example/gen/models"
 	"github.com/vbatts/example/gen/restapi"
 	"github.com/vbatts/example/gen/restapi/operations"
 )
@@ -45,6 +46,15 @@ func main() {
 
 			greeting := fmt.Sprintf("Hello, %s!", name)
 			return operations.NewGetGreetingOK().WithPayload(greeting)
+		})
+	api.GetCIRHandler = operations.GetCIRHandlerFunc(
+		func(params operations.GetCIRParams) middleware.Responder {
+
+			// TODO lookup CIR info from a db backend
+			c := models.CIR{
+				BarcodeID: params.Barcode,
+			}
+			return operations.NewGetCIROK().WithPayload(&c)
 		})
 
 	// serve API

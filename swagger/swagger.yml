@@ -2,7 +2,44 @@
 swagger: '2.0'
 info:
   version: 1.0.0
-  title: Greeting Server
+  title: Basic CIR server
+definitions:
+  CIR:
+    properties:
+      barcode_id:
+        description: Barcode of the item
+        format: int64
+        minimum: 1
+        type: integer
+        x-go-name: BarcodeID
+      cir_id:
+        description: Identification of this item within the CIR database
+        format: int64
+        minimum: 1
+        type: integer
+        x-go-name: CirID
+      name:
+        description: the general name for this item
+        minLength: 3
+        type: string
+        x-go-name: Name
+      rating:
+        description: the actual impact rating
+        format: double
+        type: number
+        x-go-name: Rating
+      vendor_id:
+        description: Vendor of the item
+        format: int64
+        minimum: 1
+        type: integer
+        x-go-name: VendorID
+    required:
+    - cir_id
+    - name
+    - rating
+    type: object
+    x-go-package: github.com/vbatts/example/models
 paths:
   /hello:
     get:
@@ -21,4 +58,22 @@ paths:
           schema:
               type: string
               description: contains the actual greeting as plain text
+  /cir:
+    get:
+      produces:
+        - application/json
+        - text/plain
+      parameters:
+        - name: barcode
+          required: true
+          type: integer
+          in: query
+          description: provide a barcode ID, to access a CIR
+      operationId: getCIR
+      responses:
+        200:
+          description: returns a climate impact rating (CIR)
+          schema:
+              $ref: '#/definitions/CIR'
+              description: contains the CIR document for the queried item
 

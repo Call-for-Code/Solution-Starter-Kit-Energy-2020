@@ -20,10 +20,37 @@ func init() {
 	SwaggerJSON = json.RawMessage([]byte(`{
   "swagger": "2.0",
   "info": {
-    "title": "Greeting Server",
+    "title": "Basic CIR server",
     "version": "1.0.0"
   },
   "paths": {
+    "/cir": {
+      "get": {
+        "produces": [
+          "application/json",
+          "text/plain"
+        ],
+        "operationId": "getCIR",
+        "parameters": [
+          {
+            "type": "integer",
+            "description": "provide a barcode ID, to access a CIR",
+            "name": "barcode",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "returns a climate impact rating (CIR)",
+            "schema": {
+              "description": "contains the CIR document for the queried item",
+              "$ref": "#/definitions/CIR"
+            }
+          }
+        }
+      }
+    },
     "/hello": {
       "get": {
         "produces": [
@@ -49,15 +76,88 @@ func init() {
         }
       }
     }
+  },
+  "definitions": {
+    "CIR": {
+      "type": "object",
+      "required": [
+        "cir_id",
+        "name",
+        "rating"
+      ],
+      "properties": {
+        "barcode_id": {
+          "description": "Barcode of the item",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 1,
+          "x-go-name": "BarcodeID"
+        },
+        "cir_id": {
+          "description": "Identification of this item within the CIR database",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 1,
+          "x-go-name": "CirID"
+        },
+        "name": {
+          "description": "the general name for this item",
+          "type": "string",
+          "minLength": 3,
+          "x-go-name": "Name"
+        },
+        "rating": {
+          "description": "the actual impact rating",
+          "type": "number",
+          "format": "double",
+          "x-go-name": "Rating"
+        },
+        "vendor_id": {
+          "description": "Vendor of the item",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 1,
+          "x-go-name": "VendorID"
+        }
+      },
+      "x-go-package": "github.com/vbatts/example/models"
+    }
   }
 }`))
 	FlatSwaggerJSON = json.RawMessage([]byte(`{
   "swagger": "2.0",
   "info": {
-    "title": "Greeting Server",
+    "title": "Basic CIR server",
     "version": "1.0.0"
   },
   "paths": {
+    "/cir": {
+      "get": {
+        "produces": [
+          "application/json",
+          "text/plain"
+        ],
+        "operationId": "getCIR",
+        "parameters": [
+          {
+            "type": "integer",
+            "description": "provide a barcode ID, to access a CIR",
+            "name": "barcode",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "returns a climate impact rating (CIR)",
+            "schema": {
+              "description": "contains the CIR document for the queried item",
+              "$ref": "#/definitions/CIR"
+            }
+          }
+        }
+      }
+    },
     "/hello": {
       "get": {
         "produces": [
@@ -82,6 +182,52 @@ func init() {
           }
         }
       }
+    }
+  },
+  "definitions": {
+    "CIR": {
+      "type": "object",
+      "required": [
+        "cir_id",
+        "name",
+        "rating"
+      ],
+      "properties": {
+        "barcode_id": {
+          "description": "Barcode of the item",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 1,
+          "x-go-name": "BarcodeID"
+        },
+        "cir_id": {
+          "description": "Identification of this item within the CIR database",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 1,
+          "x-go-name": "CirID"
+        },
+        "name": {
+          "description": "the general name for this item",
+          "type": "string",
+          "minLength": 3,
+          "x-go-name": "Name"
+        },
+        "rating": {
+          "description": "the actual impact rating",
+          "type": "number",
+          "format": "double",
+          "x-go-name": "Rating"
+        },
+        "vendor_id": {
+          "description": "Vendor of the item",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 1,
+          "x-go-name": "VendorID"
+        }
+      },
+      "x-go-package": "github.com/vbatts/example/models"
     }
   }
 }`))

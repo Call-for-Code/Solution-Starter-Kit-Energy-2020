@@ -31,8 +31,14 @@ func configureAPI(api *operations.GreeterAPI) http.Handler {
 
 	api.JSONConsumer = runtime.JSONConsumer()
 
+	api.JSONProducer = runtime.JSONProducer()
 	api.TxtProducer = runtime.TextProducer()
 
+	if api.GetCIRHandler == nil {
+		api.GetCIRHandler = operations.GetCIRHandlerFunc(func(params operations.GetCIRParams) middleware.Responder {
+			return middleware.NotImplemented("operation operations.GetCIR has not yet been implemented")
+		})
+	}
 	if api.GetGreetingHandler == nil {
 		api.GetGreetingHandler = operations.GetGreetingHandlerFunc(func(params operations.GetGreetingParams) middleware.Responder {
 			return middleware.NotImplemented("operation operations.GetGreeting has not yet been implemented")
