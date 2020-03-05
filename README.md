@@ -4,10 +4,10 @@ This solution starter was created by at the United Nations Human Rights Office i
 
 ## Authors
 
-* Mark Meiklejohn - JPMorgan Chase
-* Roberto Mosqueda - Persistent Systems
 * Vincent Batts - Red Hat
 * Binu Midhun - IBM
+* Mark Meiklejohn - JPMorgan Chase
+* Roberto Mosqueda - Persistent Systems
 * Henry Nash - IBM
 
 ## Contents
