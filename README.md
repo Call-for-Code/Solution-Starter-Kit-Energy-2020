@@ -46,16 +46,27 @@ Whether it's third-party open source projects or IBM Cloud services, technologie
 
 ## The idea
 
-[add more info on how the end solution might look here]
+The idea is to expand the global product labelling system, to include a comprehensive *Climate Impact Rating (CIR)*, which will be visible at the point-of-sale (POS) by consumers (be that in-store or on-line). Such a Climate Impact Rating could eventually include:
+
+* Energy Efficiency while in use (this exists today for many products)
+* Energy (and energy mix) to produce, potentially expressed as CO2 emitted
+* Expected lifetime of product (enabling better comparison between production energy vs in-use energy)
+* Other (non-CO2) green-house gas emmissions (e.g. from fertilizer)
+* Other comsumables, e.g. water
+* Recyclability
+
+One of the key challenges of any such labelling system is that it be, first and foremost, understandable by the intended reader - as well as comprehensive in terms of what it includes. We envisage that eventually this would actuially be printed on products (much like today's Energy Efficiency or Food labelling), but ahead of that we would like to enable POS scanning using smart phones to transalate barcodes into a visible rating.
+
+One further item that would be benficial to build in would be to include an estimate of the climate impact of the transporation of the product to the Point-of-Sale (POS). By definition, this could most likely not be printed on the product (since the value at each POS might be different) - but perhaps be looked up be displayed via a smart phone (which would know the location), or online.
 
 Creating such a labelling system is a large and global undertaking, which will require many underlying components, technologies and agreements to come together. For the Call for Code 2020 challenge on Energy we are encouraging you to experiment with building out some of these components - so these can be brought together to enable this overall labelling system. These components fall into a number of categories:
 
 |   |   |
 | - | - |
-| Core-Architecture | Use the provided starter kit to get a basic system up and running that supports Consumer APIs. Develop new and in testing ways of displaying the CIR, e.g. via Augmented Reality (AR) on a mobile deice, within search engines, on product listings etc. |
-| Data Science | How best to map raw data into the chosen label. For example, is it better to represent energy as CO2 produced (i.e. it combines amount of energy and use of renewables) or keep these separate? |
+| Core-Architecture | Use the provided starter kit to get a basic system up and running that supports Consumer APIs. Maybe you can develop a better architecure? Develop new and interesting ways of displaying the CIR, e.g. via Augmented Reality (AR) on a mobile deice, within search engines, on product listings etc. |
+| Data Science | How best to map raw data into the chosen label. For example, is it better to represent energy as CO2 produced (i.e. it combines amount of energy and use of renewables) or keep these separate? How might we include summary data (e.g. by CO2 per country/region) ahead of having detailed information for a significant number of products? |
 | Labelling Design | Experiment (and maybe user test) and then propose design  of the label that is both comprehensive and understandable by consumers. Use the experience from food labelling and existing Energy Ratings as examples |
-| Additional Storyboards | Develop additional storyboards for users who are manufactures, administrators and auditors |
+| Additional Storyboards | Develop additional storyboards (and interfaces) for users who are manufactures, administrators and auditors |
 
 ## How it works
 
@@ -71,29 +82,27 @@ By combining cloud-native infrastructure with event-driven data processing and i
 
 ![Challenge 1 Architecture](/images/Challenge_1_Architecture.png?raw=true "Challenge 1 Architecture")
 
-This solution starter idea combines machine learning models with real-time information to get users the information they need to take action quickly.
+This solution starter idea provides a basic architecture of you to experiment within any of the categories, and includes:
 
-1. By managing a collection of models about how better to restore infrastructure, the system could store historical data, use that to predict trends, and therefore provide recommendations in the form of an assessment.
-1. These models could then be referenced by various applications to collect information about the current situation and provide end users with the assessments.
-1. By rating the success of the recommendation, users can provide information that will help others in turn during future situations to build back better.
+* A CouchDB NoSQL database layer holding both individual product rating, as well as sumamry data
+* A basic API server that allows data to insert and extract data from the database. This API is expressed as a Swagger (OpenAPI) document, so you can build your own clients.
+* Deployment tools to stand up the above on the IBM Cloud, within the free-tier plan (i.e. so it is free for you to experiment)
 
 ## Documents
 
-- [Terminology on disaster risk reduction](https://www.unisdr.org/we/inform/terminology)
-- [Using global indicators to measure progress](https://www.unisdr.org/files/54970_techguidancefdigitalhr.pdf)
+- [Data Tools & Maps](https://www.eia.gov/tools/)
+- [Existing Energystar Ratings System](https://www.energystar.gov/)
+- [EU Energy Ratings System](https://ec.europa.eu/info/energy-climate-change-environment/standards-tools-and-labels/products-labelling-rules-and-requirements/energy-label-and-ecodesign/about_en)
+- [Traffic Light Food Labelling](hhttps://en.wikipedia.org/wiki/Traffic_light_rating_system)
 
 ## Datasets
 
-- [Malawi Spatial Data Platform (MASDAP)](http://www.masdap.mw/)
-- [Land Usage from MASDAP](http://www.masdap.mw/layers/osm:osm_landusages)
-- [Malawi Disaster & Risk Profile](https://www.preventionweb.net/countries/mwi/data/)
-- [Disparities in Cellphone Ownership Pose Challenges in Africa](https://news.gallup.com/poll/189269/disparities-cellphone-ownership-pose-challenges-africa.aspx)
+- [World consumption averages, and break down per capita](https://en.wikipedia.org/wiki/List_of_countries_by_electricity_consumption)
+- [Power plant information](https://www.eia.gov/state/maps.php)
 
 ## Technology
 
-- [Generate insights from multiple data sources](https://developer.ibm.com/patterns/generate-insights-from-multiple-data-sources-using-watson-studio/)
-- [Transform and load big data CSV files into a database](https://developer.ibm.com/patterns/transform-load-big-data-csv-files-db2-zos-database/)
-- [2018 Finalist PD3R](https://developer.ibm.com/blogs/call-for-code-finalist-pd3r-uses-artificial-intelligence-for-retrofitting/)
+- TBA
 
 ## Getting started
 
