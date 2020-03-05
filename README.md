@@ -1,6 +1,6 @@
 # Energy sustainability in the context of climate change
 
-This solution starter was created by at the United Nations Human Rights Office in Geneva, Switzerland on February 27-28, 2020. It features contributions by technologists from JPMorgan Chase, Persistent Systems, IBM, and Red Hat.
+This solution starter was initially created at the United Nations Human Rights Office in Geneva, Switzerland on February 27-28, 2020, and built out over following 4 weeks. It features contributions by technologists from JPMorgan Chase, Persistent Systems, IBM, and Red Hat.
 
 ## Authors
 
