@@ -1,4 +1,4 @@
-# Energy sustainability in the context of climate change 
+# Energy sustainability in the context of climate change
 
 This solution starter was created by at the United Nations Human Rights Office in Geneva, Switzerland on February 27-28, 2020. It features contributions by technologists from JPMorgan Chase, Persistent Systems, IBM, and Red Hat. 
 
@@ -6,9 +6,9 @@ This solution starter was created by at the United Nations Human Rights Office i
 
 * Mark Meiklejohn - JPMorgan Chase
 * Roberto Mosqueda - Persistent Systems
-* Vincent Batts - Red Hat 
-* Binu Midhun - IBM 
-* Henry Nash - IBM 
+* Vincent Batts - Red Hat
+* Binu Midhun - IBM
+* Henry Nash - IBM
 
 ## Contents
 
@@ -32,19 +32,21 @@ As the population grows, so does the demand for energy. Fossil fuels like coal, 
 
 Read about the [UN Sustainable Development Goal on affordable and clean energy](https://www.undp.org/content/undp/en/home/sustainable-development-goals/goal-7-affordable-and-clean-energy.html).
 
+While the switch to clean energy in our homes will make a real and important reduction in impact to the climate, energy usuage in the commercial sector is often higher than in the domestic sector (i.e. that used in homes). A key part of this commercial energy consumption goes into making products that we buy. However, while some products we buy come with an Engergy-efficienct rating (i.e. how much energy will my washing machine consume when I use it), there is nothing provided in terms of the amount of energy (and type of energy, i.e. fossil vs renewable) that was used to manufacture the product in the first place. In fact, if you think about it, to minimize the impact on the climate of prouducts you buy, it would be great to be able to compare the *climate impact* across different manufactures' products. To be complete, this climate impact comparison might also include other things outside of energy - eg. water consumption. What is really needed is a comprehensive *Climate Impact Rating* for products, that can be presented to a consumer as some kind of labelling system.
+
 ### How can technology help?
 
-Whether it's third-party open source projects or IBM Cloud services, technologies like data analytics, Internet of Things, artificial intelligence, and blockchain can help address global environmental challenges such as water quantity and quality. Using water more efficiently will reduce greenhouse gases from treatment systems. 
+Whether it's third-party open source projects or IBM Cloud services, technologies like data analytics, visualization, Internet of Things, Open APIs, databases and blockchain can help address global environmental challenges to track energey (and other inputs) that go into making prodcts. Encouraging the selection of the lowest climate impact of the procucts we buy can have a real reduction on our personal impact on the planet.
 
 ## Video
+
+[ replace this with Binu's video]
 
 [![Call for Code Solution Starter: Water sustainability in the context of climate change ](https://img.youtube.com/vi/hC2b-iP6Rxc/0.jpg)](https://www.youtube.com/watch?v=hC2b-iP6Rxc)
 
 ## The idea
 
-The team tackled the challenges that come in the process of rebuilding after the impact of a disaster. Research has shown that rapid yet well-informed and well-orchestrated rebuilding measures can help to massively reduce the negative impact of disasters on the life, well-being, and health of individuals. An effective and efficient system of accessing information and contributing feedback in a way that can improve the foundation of future decisions is key to this cycle.
-
-In order to leverage the benefits of such a system it must be designed to allow for simple ingestion of information, data, images along with a user-friendly way of drawing insights from it. The team created a platform-based solution that aggregates and analyzes historical and current data related to infrastructure, agriculture, weather, utility and more. It can then be used to derive key insights for future response and reconstruction plans. 
+Creating such a labelling system is a large and global undertaking, which will require many components....
 
 ## How it works
 
