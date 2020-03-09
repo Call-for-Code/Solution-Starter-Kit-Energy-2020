@@ -81,8 +81,15 @@ The database is populated with some inital example data, to get you started.
 [ Need to add someting about summary data here, dpending on what Binu comes up with ]
 
 ## Diagrams
+![Cloud Impact Rating Starter Architecture](images/EnergySustainabilityArchitecture.png)
 
-![Cloud Impact Rating Starter Architecture](TBA?raw=true "Cloud Impact Rating Starter Architecture")
+### Flow
+1. User scans the product barcode and Climate impact rating API starts retrieving product CIR.
+2. Climate impact rating API interacts with external group of manufacturers and energy governing body to retrieve product data.
+3. App then stores the product rating details in a Cloudant database for later use.
+4. App uploads the requisite product details to Climate Impact Analyser.
+5. After Climate Impact Analyser finishes processing, the user will see the product CIR result in the UI.
+
 
 ## Documents
 
