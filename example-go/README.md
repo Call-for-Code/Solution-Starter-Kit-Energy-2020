@@ -6,5 +6,7 @@ team](https://github.com/Call-for-Code/solution-starter-kit-energy-2020).
 
 ## Next goals of this code repo
 
-* more comprehensive API support
-* example data upload
+* query a barcode, receive a JSON document about energy source information of that product
+* mock/sample data stored in a database (Redis, influxDB, MongoDB, etcd, etc)
+
+

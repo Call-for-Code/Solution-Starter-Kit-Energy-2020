@@ -84,12 +84,12 @@ The database is populated with some inital example data, to get you started.
 ![Cloud Impact Rating Starter Architecture](images/EnergySustainabilityArchitecture.png)
 
 ### Flow
-1. User scans the product barcode and Climate impact rating API starts retrieving product CIR.
-2. Climate impact rating API interacts with external group of manufacturers and energy governing body to retrieve product data.
-3. App then stores the product rating details in a Cloudant database for later use.
-4. App uploads the requisite product details to Climate Impact Analyser.
-5. After Climate Impact Analyser finishes processing, the user will see the product CIR result in the UI.
 
+1. User scans a product barcode with an app, which then calls Climate Impact Rating API, passing in the barcode ID
+2. Climate Impact Rating API retrieves the reatings data that matches that barcode ID.
+3. Climate Impact Rating API returns the ratings data for the app to format and display appropriately.
+4. Manufacturers can upload product and ratings data via the Climate Impact Rating API (perhaps via a reserved portal)
+5. The Climate Impact Analyzer will run in the background to produce summary data, enabling broader ratings queries to satisfied by the API.
 
 ## Documents
 
@@ -117,32 +117,65 @@ Also, you'll need an [IBM Cloud account](https://cloud.ibm.com), with the latest
 
 ### Steps
 
+1. [Clone this repo](#1-provision-mysql)
 1. [Provision a CouchDB instance using Cloudant](#1-provision-mysql)
-1. [Deploy the API server to the IBM Cloud](#2-create-openwhisk-actions-and-mappings)
+1. [Prepare the API Server](#2-create-openwhisk-actions-and-mappings)
+1. [Run the API Server](#2-create-openwhisk-actions-and-mappings)
 1. [Test API endpoints](#3-test-api-endpoints)
 
 ### 1. Provision a CouchDB instance using Cloudant
 
-Log into the IBM Cloud and provision a [CouchDB instance using Cloudant](TBD). Cloudant has a free tier for simple testing.
+Log into the IBM Cloud and provision a [CouchDB instance using Cloudant](TBD). From the catalog, select Databases and the Cloudant panel:
 
-[add more here]
+![Cloudant Instance](images/cloudant1.png)
 
-### 2. Deploy the API server to the IBM Cloud
+Once selected, you can chose your Cloudant plan - there is a free tier for simple testing that is sufficent to run this CIR example:
 
-`deploy.sh` is a convenience script reads the environment variables from `local.env` that.....
+![Cloudant Instance](images/cloudant-2.png)
+
+Once your Cloudant instance has been created, you need to create a service credential that the CIR API Server can use to communicate with it. By selecting your running cloudant instance, you can `Service Credentials` from the left hand menu:
+
+![Cloudant Instance](images/credential1.png)
+
+### 2. Prepare the API Server
+
+To prepare the API Server, you need to paste in the service credientials you create in the step above. [add more here]
+
+### 3. Run the API Server
+
+You can run the API server either locally on your machine, or in a Docker container. The server requires python, flask, flaskrestx, so you may find it easier to run it in a container (a Docker file is provdided).
+
+#### Run the API Server in a Docker Cntainer
 
 ```bash
-./deploy.sh --install
+cd example
+docker build....
+docker run....
 ```
 
-### 3. Test API endpoints
-
-There are helper scripts that simulate HTTP API clients to create, get, update and delete entities against the `/v1/cir` endpoint.
+#### Run the API Server locally
 
 ```bash
-# GET /v1/cir?barcode=1
-client/cat-get.sh 1
+(give examples on MacOSX to install python and pipenv)
+pipenv install flask
+pipenx install flaskrestx
 ```
+
+### 4. Test API endpoints
+
+If you are running locally, the API will be published on 127.0.0.1:5000/v1, so a simple action to retrieve a CIR for a given barcode can be exeuted using curl"
+
+```bash
+curl "http://127.0.0.1:5000/v1/cir?barcode=test-barcode
+```
+
+[add a lot more here!]
+
+The API Server will also render a Swagger/OpenAPI specification for the API, at the root url (i.e. `http://127.0.0.1:5000`):
+
+![Swagger Example](images/swagger1.png)
+
+Clicking on the swagger.json url at the top of the screen allows you to extract the swagger specification, for use by Swagger/OpenAPI tooling to generate a client in the language of your choice.
 
 ## Resources
 
