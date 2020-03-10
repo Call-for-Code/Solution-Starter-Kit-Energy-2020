@@ -168,7 +168,14 @@ If you are running locally, the API will be published on 127.0.0.1:5000/v1, so a
 ```bash
 curl "http://127.0.0.1:5000/v1/cir?barcode=test-barcode
 ```
+
 [add a lot more here!]
+
+The API Server wiull also render a Swagger/OpenAPI specification for the API, at the root url (i.e. 127.0.0.1:5000):
+
+![Swagger Example](images/swagger1.png)
+
+Clicking on the swagger.json url at the top of the screen allows you to extract the swagger specification, for use by Swagger/OpenAPI tooling to generate a client in the language of your choice.
 
 ## Resources
 
