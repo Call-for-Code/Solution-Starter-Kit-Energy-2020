@@ -171,7 +171,7 @@ curl "http://127.0.0.1:5000/v1/cir?barcode=test-barcode
 
 [add a lot more here!]
 
-The API Server wiull also render a Swagger/OpenAPI specification for the API, at the root url (i.e. 127.0.0.1:5000):
+The API Server will also render a Swagger/OpenAPI specification for the API, at the root url (i.e. `http://127.0.0.1:5000`):
 
 ![Swagger Example](images/swagger1.png)
 
