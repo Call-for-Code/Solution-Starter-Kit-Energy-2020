@@ -145,7 +145,7 @@ Create a new service credential. giving it a name (it doesn't matter what you ca
 
 ![Cloudant Instance](images/credential2.png)
 
-One created, you can display and copy the credentials, so you are ready to paste it into the code of the API Server in the next step.
+Once created, you can display and copy the credentials, so you are ready to paste it into the code of the API Server in the next step:
 
 ![Cloudant Instance](images/credential3.png)
 
@@ -158,6 +158,8 @@ To prepare the API Server, you need to paste in the service credientials you cre
 You need to replace this with the credentials you just created, for example:
 
 ![API cred asfter](images/api-cred2.png)
+
+Save the file, and your API server is ready to run!
 
 ### 3. Run the API Server
 
