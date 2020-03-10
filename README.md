@@ -84,12 +84,12 @@ The database is populated with some inital example data, to get you started.
 ![Cloud Impact Rating Starter Architecture](images/EnergySustainabilityArchitecture.png)
 
 ### Flow
-1. User scans the product barcode and Climate impact rating API starts retrieving product CIR.
-2. Climate impact rating API interacts with external group of manufacturers and energy governing body to retrieve product data.
-3. App then stores the product rating details in a Cloudant database for later use.
-4. App uploads the requisite product details to Climate Impact Analyser.
-5. After Climate Impact Analyser finishes processing, the user will see the product CIR result in the UI.
 
+1. User scans a product barcode with an app, which then calls Climate Impact Rating API, passing in the barcode ID
+2. Climate Impact Rating API retrieves the reatings data that matches that barcode ID.
+3. Climate Impact Rating API returns the ratings data for the app to format and display appropriately.
+4. Manufacturers can upload product and ratings data via the Climate Impact Rating API (perhaps via a reserved portal)
+5. The Climate Impact Analyzer will run in the background to produce summary data, enabling broader ratings queries to satisfied by the API.
 
 ## Documents
 
@@ -131,7 +131,7 @@ Log into the IBM Cloud and provision a [CouchDB instance using Cloudant](TBD). F
 
 Once selected, you can chose your Cloudant plan - there is a free tier for simple testing that is sufficent to run this CIR example:
 
-![Cloudant Instance](images/cloudant2.png)
+![Cloudant Instance](images/cloudant-2.png)
 
 Once your Cloudant instance has been created, you need to create a service credential that the CIR API Server can use to communicate with it. By selecting your running cloudant instance, you can `Service Credentials` from the left hand menu:
 
