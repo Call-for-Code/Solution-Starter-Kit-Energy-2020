@@ -117,32 +117,58 @@ Also, you'll need an [IBM Cloud account](https://cloud.ibm.com), with the latest
 
 ### Steps
 
+1. [Clone this repo](#1-provision-mysql)
 1. [Provision a CouchDB instance using Cloudant](#1-provision-mysql)
-1. [Deploy the API server to the IBM Cloud](#2-create-openwhisk-actions-and-mappings)
+1. [Prepare the API Server](#2-create-openwhisk-actions-and-mappings)
+1. [Run the API Server](#2-create-openwhisk-actions-and-mappings)
 1. [Test API endpoints](#3-test-api-endpoints)
 
 ### 1. Provision a CouchDB instance using Cloudant
 
-Log into the IBM Cloud and provision a [CouchDB instance using Cloudant](TBD). Cloudant has a free tier for simple testing.
+Log into the IBM Cloud and provision a [CouchDB instance using Cloudant](TBD). From the catalog, select Databases and the Cloudant panel:
 
-[add more here]
+![Cloudant Instance](images/cloudant1.png)
 
-### 2. Deploy the API server to the IBM Cloud
+Once selected, you can chose your Cloudant plan - there is a free tier for simple testing that is sufficent to run this CIR example:
 
-`deploy.sh` is a convenience script reads the environment variables from `local.env` that.....
+![Cloudant Instance](images/cloudant2.png)
+
+Once your Cloudant instance has been created, you need to create a service credential that the CIR API Server can use to communicate with it. By selecting your running cloudant instance, you can `Service Credentials` from the left hand menu:
+
+![Cloudant Instance](images/credential1.png)
+
+### 2. Prepare the API Server
+
+To prepare the API Server, you need to paste in the service credientials you create in the step above. [add more here]
+
+### 3. Run the API Server
+
+You can run the API server either locally on your machine, or in a Docker container. The server requires python, flask, flaskrestx, so you may find it easier to run it in a container (a Docker file is provdided).
+
+#### Run the API Server in a Docker Cntainer
 
 ```bash
-./deploy.sh --install
+cd example
+docker build....
+docker run....
 ```
 
-### 3. Test API endpoints
-
-There are helper scripts that simulate HTTP API clients to create, get, update and delete entities against the `/v1/cir` endpoint.
+#### Run the API Server locally
 
 ```bash
-# GET /v1/cir?barcode=1
-client/cat-get.sh 1
+(give examples on MacOSX to install python and pipenv)
+pipenv install flask
+pipenx install flaskrestx
 ```
+
+### 4. Test API endpoints
+
+If you are running locally, the API will be published on 127.0.0.1:5000/v1, so a simple action to retrieve a CIR for a given barcode can be exeuted using curl"
+
+```bash
+curl "http://127.0.0.1:5000/v1/cir?barcode=test-barcode
+```
+[add a lot more here!]
 
 ## Resources
 
