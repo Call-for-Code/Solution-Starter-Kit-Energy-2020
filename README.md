@@ -123,7 +123,11 @@ Also, you'll need an [IBM Cloud account](https://cloud.ibm.com), with the latest
 1. [Run the API Server](#2-create-openwhisk-actions-and-mappings)
 1. [Test API endpoints](#3-test-api-endpoints)
 
-### 1. Provision a CouchDB instance using Cloudant
+### 1. Clone this repo
+
+Clone this repo, so that you have a copy of the API server locally on your machine.
+
+### 2. Provision a CouchDB instance using Cloudant
 
 Log into the IBM Cloud and provision a [CouchDB instance using Cloudant](TBD). From the catalog, select Databases and the Cloudant panel:
 
@@ -133,13 +137,27 @@ Once selected, you can chose your Cloudant plan - there is a free tier for simpl
 
 ![Cloudant Instance](images/cloudant-2.png)
 
-Once your Cloudant instance has been created, you need to create a service credential that the CIR API Server can use to communicate with it. By selecting your running cloudant instance, you can `Service Credentials` from the left hand menu:
+Once your Cloudant instance has been created, you need to create a service credential that the CIR API Server can use to communicate with it. By selecting your running cloudant instance, you can chose `Service Credentials` from the left hand menu:
 
 ![Cloudant Instance](images/credential1.png)
 
+Create a new service credential. giving it a name (it doesn't matter what you call it):
+
+![Cloudant Instance](images/credential2.png)
+
+One created, you can display and copy the credentials, so you are ready to paste it into the code of the API Server in the next step.
+
+![Cloudant Instance](images/credential3.png)
+
 ### 2. Prepare the API Server
 
-To prepare the API Server, you need to paste in the service credientials you create in the step above. [add more here]
+To prepare the API Server, you need to paste in the service credientials you created in the step above. Open the file example/server.py and you will see that an old credential is defined near the top of the file:
+
+![API cred before](images/api-cred1.png)
+
+You need to replace this with the credentials you just created, for example:
+
+![API cred asfter](images/api-cred2.png)
 
 ### 3. Run the API Server
 
