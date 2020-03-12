@@ -52,9 +52,9 @@ The idea is to expand the global product labelling system, to include a comprehe
 * Energy (and energy mix) to produce, potentially expressed as CO2 emitted
 * Expected lifetime of product (enabling better comparison between production energy vs in-use energy)
 * Other (non-CO2) green-house gas emmissions (e.g. from fertilizer)
-* Other comsumables, e.g. water
+* Other consumables, e.g. water
 * Recyclability
-* Repairability (as part of the Right of Repair initaitive)
+* Repairability (as part of the Right to Repair initiative)
 
 One of the key challenges of any such labelling system is that it be, first and foremost, understandable by the intended reader - as well as comprehensive in terms of what it includes. We envisage that eventually this would actuially be printed on products (much like today's Energy Efficiency or Food labelling), but ahead of that we would like to enable POS scanning using smart phones to transalate barcodes into a visible rating.
 
@@ -67,7 +67,7 @@ Creating such a labelling system is a large and global undertaking, which will r
 | Core-Architecture | Use the provided starter kit to get a basic system up and running that supports Consumer APIs. Maybe you can develop a better architecure? |
 | Rating Display | Develop new and interesting ways of displaying the CIR, e.g. via Augmented Reality (AR) on a mobile deice, within search engines, on product listings etc. |
 | Data Science | How best to map raw data into the chosen label. For example, is it better to represent energy as CO2 produced (i.e. it combines amount of energy and use of renewables) or keep these separate? How might we include summary data (e.g. by CO2 per country/region) ahead of having detailed information for a significant number of products? |
-| Labelling Design | Experiment (and maybe user test) and then propose design  of the label that is both comprehensive and understandable by consumers. Use the experience from food labelling and existing Energy Ratings as examples |
+| Labelling Design | Experiment (and maybe user test) and then propose design of the label that is both comprehensive and understandable by consumers. Use the experience from food labelling and existing Energy Ratings as examples |
 | Additional Storyboards | Develop additional storyboards (and interfaces) for users who are manufactures, administrators and auditors |
 
 If none of the above appeals to you, then no problem! There are, of course, many other aspects of energy sustainability - maybe you could work on one of those. Here are a few other ideas you could explore:
@@ -75,7 +75,7 @@ If none of the above appeals to you, then no problem! There are, of course, many
 * How might consumers compare their energy use of a particular devices with the usage by others? Maybe they are not using it in an optimal way?
 * For those that have no access to an electicity supply (or one that was very intermitent), how might they gain the knowledge to do get a stable supply? For example, how might a community start by using second-hand car batteries (either as a main source or as a backup), and then use that to move up "the energy ladder"? How can basic communications needs be satisfied using these (for instance basic cell phone charging), and that communication be used to get to the next rung on the ladder?
 
-Or maybe you have a beter idea altogether?
+Or maybe you have a better idea altogether?
 
 ## How it works
 
@@ -97,7 +97,7 @@ The database is populated with some inital example data, to get you started.
 2. Climate Impact Rating API retrieves the reatings data that matches that barcode ID.
 3. Climate Impact Rating API returns the ratings data for the app to format and display appropriately.
 4. Manufacturers can upload product and ratings data via the Climate Impact Rating API (perhaps via a reserved portal)
-5. The Climate Impact Analyzer will run in the background to produce summary data, enabling broader ratings queries to satisfied by the API.
+5. In the future, a Climate Impact Analyzer will run in the background to produce summary data, enabling broader ratings queries to be satisfied by the API.
 
 ## Documents
 
@@ -142,21 +142,21 @@ Log into the IBM Cloud and provision a [CouchDB instance using Cloudant](https:/
 
 ![Cloudant Instance](images/cloudant1.png)
 
-Once selected, you can chose your Cloudant plan - there is a free tier for simple testing that is sufficent to run this CIR example. It is recommended you  chose `IAM Only` authentication.
+Once selected, you can choose your Cloudant plan - there is a free tier for simple testing that is sufficent to run this CIR example. It is recommended you  choose `IAM Only` authentication.
 
-![Cloudant Instance](images/cloudant-2.png)
+![Cloudant Instance 2](images/cloudant-2.png)
 
-Once your Cloudant instance has been created, you need to create a service credential that the CIR API Server can use to communicate with it. By selecting your running cloudant instance, you can chose `Service Credentials` from the left hand menu:
+Once your Cloudant instance has been created, you need to create a service credential that the CIR API Server can use to communicate with it. By selecting your running cloudant instance, you can choose `Service Credentials` from the left hand menu:
 
-![Cloudant Instance](images/credential1.png)
+![Cloudant Credentials](images/credential1.png)
 
 Create a new service credential. giving it a name (it doesn't matter what you call it):
 
-![Cloudant Instance](images/credential2.png)
+![Cloudant Credentials 2](images/credential2.png)
 
 Once created, you can display and copy the credentials, so you are ready to paste it into the code of the API Server in the next step:
 
-![Cloudant Instance](images/credential3.png)
+![Cloudant Credentials 3](images/credential3.png)
 
 ### 2. Prepare the API Server
 
@@ -166,7 +166,7 @@ To prepare the API Server, you need to paste in the service credientials you cre
 
 You need to replace this with the credentials you just created, for example:
 
-![API cred asfter](images/api-cred2.png)
+![API cred after](images/api-cred2.png)
 
 Save the file, and your API server is ready to run!
 
@@ -174,7 +174,7 @@ Save the file, and your API server is ready to run!
 
 You can run the API server either locally on your machine, or in a Docker container. The server requires python, flask, flaskrestx, so you may find it easier to run it in a container (a Docker file is provdided).
 
-#### Run the API Server in a Docker Cntainer
+#### Run the API Server in a Docker Container
 
 To build and run a docker image of the API server (assuming you have docker set up on your machine), from the `example` directory in your cloned repo:
 
