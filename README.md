@@ -183,7 +183,7 @@ pipenx install flaskrestx
 
 ### 4. Test API endpoints
 
-The first you execute an API, the API server will create the product CIR database and upload it with a small amount of dummy data, so that you can experiment.
+The first time you execute an API, the API server will create the product CIR database and upload it with a small amount of dummy data, so that you can experiment.
 
 If you are running locally, the API will be published on 127.0.0.1:5000/v1, so a simple action to retrieve a product CIR for a given barcode can be executed using curl:
 
