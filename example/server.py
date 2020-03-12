@@ -102,6 +102,7 @@ class ProductDAO(object):
     def get(self, id):
         try:
             my_document = self.cir_db[id]
+            my_document['id'] = my_document['barcode_id']
         except KeyError:
             api.abort(404, "Product {} not registered".format(id))
         return my_document
@@ -111,6 +112,7 @@ class ProductDAO(object):
         # index of some such search ability
         try:
             my_document = self.cir_db[barcode_id]
+            my_document['id'] = my_document['barcode_id']
         except KeyError:
             api.abort(404, "Product {} not registered".format(id))
         return my_document
@@ -154,7 +156,7 @@ class Product(Resource):
     @api.marshal_with(product, code=201)
     @api.doc("Register a product and its ratings")
     def post(self):
-        return ProductDAO().create(api.payload)
+        return ProductDAO().create(api.payload), 201
 
 @product_ns.route('/<string:id>')
 class ProductWithID(Resource):
