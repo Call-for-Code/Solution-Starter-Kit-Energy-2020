@@ -105,7 +105,8 @@ The database is populated with some inital example data, to get you started.
 
 ## Technology
 
-* TBA
+* [IBM Cloudant](https://www.ibm.com/cloud/cloudant)
+* [Flask - A lightweight WSGI web application framework](https://palletsprojects.com/p/flask/)
 
 ## Getting started
 
@@ -129,7 +130,7 @@ Clone this repo, so that you have a copy of the API server locally on your machi
 
 ### 2. Provision a CouchDB instance using Cloudant
 
-Log into the IBM Cloud and provision a [CouchDB instance using Cloudant](TBD). From the catalog, select Databases and the Cloudant panel:
+Log into the IBM Cloud and provision a [CouchDB instance using Cloudant](https://www.ibm.com/cloud/cloudant). From the catalog, select Databases and the Cloudant panel:
 
 ![Cloudant Instance](images/cloudant1.png)
 
@@ -168,6 +169,7 @@ You can run the API server either locally on your machine, or in a Docker contai
 #### Run the API Server in a Docker Cntainer
 
 ```bash
+[TODO: update this]
 cd example
 docker build....
 docker run....
@@ -175,33 +177,53 @@ docker run....
 
 #### Run the API Server locally
 
+To run the API server locally, you need to ensure all the dependencies are installed on your local machine. A Pipefile is provided to enable pipenv to install the sepcific dependancies - you first need to ensure you have python (3.6.x recommended) and pipenv installed. Here's an example of doing this on MacOS:
+
 ```bash
-(give examples on MacOSX to install python and pipenv)
-pipenv install flask
-pipenx install flaskrestx
+brew install python
+pip install --user pipenv
+pipenv install
+```
+
+Now that you have the dependencies, you can run the API server itself (from within the `example` folder in your cloned repo)
+
+```bash
+$ pipenv run python ./server.py
+ * Serving Flask app "server" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
 ```
 
 ### 4. Test API endpoints
 
 The first time you execute an API, the API server will create the product CIR database and upload it with a small amount of dummy data, so that you can experiment.
 
-If you are running locally, the API will be published on 127.0.0.1:5000/v1, so a simple action to retrieve a product CIR for a given barcode can be executed using curl:
-
-```bash
-curl "http://127.0.0.1:5000/v1/product?barcode_id=0125551234508
-```
-
-[add a lot more here!]
-
-The API Server will also render a Swagger/OpenAPI specification for the API, at the root url (i.e. `http://127.0.0.1:5000`):
+If you are running locally, the API will be published on 127.0.0.1:5000. The API Server will also render a Swagger/OpenAPI specification for the API, at the root url (i.e. `http://127.0.0.1:5000`):
 
 ![Swagger Example](images/swagger1.png)
 
 Clicking on the swagger.json url at the top of the screen allows you to extract the swagger specification, for use by Swagger/OpenAPI tooling to generate a client in the language of your choice.
 
+You can also use curl to execute simple actions. For example, to retrieve a product CIR for a given barcode:
+
+```bash
+curl "http://127.0.0.1:5000/v1/product?barcode_id=0125551234508
+{"id": "0125551234508", "barcode_id": "0125551234508", "type": "AIR CONDITIONER", "category": "SPLIT AIR-CONDITIONER", "model": "A-890AM", "brand": "Brand - A", "rating_data": {"efficiency": 4, "energy": 44.66160323, "CO2": 46.61812622, "otherGG": 61.61812622, "water": 241.0, "plastic": 1327.42056, "lifetime": 20.0, "recyclability": 9, "repairability": null}}
+```
+
+You could also create a new product entry
+
+```bash
+curl -d '{"barcode_id": "1125761234500", "type": "REFRIDGERATOR", "category": "FRIDGE_FREEZER", "model": "F-13876", "brand": "Brand - F", "rating_data": {"efficiency": 4, "energy": 44.66160323, "CO2": 46.61812622, "otherGG": 61.61812622, "water": 241.0, "plastic": 1327.42056, "lifetime": 20.0, "recyclability": 9}}' -X POST "http://127.0.0.1:5000/v1/product/" -H "Content-Type: application/json"
+```
+
 ## Resources
 
-* TBA
+* [IBM Cloud](https://cloud.ibm.com)
+* [IBM Cloudant](https://www.ibm.com/cloud/cloudant)
 
 ## License
 
