@@ -142,9 +142,9 @@ Log into the IBM Cloud and provision a [CouchDB instance using Cloudant](https:/
 
 ![Cloudant Instance](images/cloudant1.png)
 
-Once selected, you can choose your Cloudant plan - there is a free tier for simple testing that is sufficent to run this CIR example. It is recommended you  choose `IAM Only` authentication.
+Once selected, you can choose your Cloudant plan - there is a free tier for simple testing that is sufficent to run this CIR example. You should choose an appropriate region, give the service a name, and it is recommended you choose `Use only IAM` under `Available authentication methods`. You can leave the other settings with their defaults. Click the blue `Create` button when ready.
 
-![Cloudant Instance 2](images/cloudant-2.png)
+![Cloudant Instance 2](images/cloudant2.png)
 
 Once your Cloudant instance has been created, you need to create a service credential that the CIR API Server can use to communicate with it. By selecting your running cloudant instance, you can choose `Service Credentials` from the left hand menu:
 
@@ -179,8 +179,8 @@ You can run the API server either locally on your machine, or in a Docker contai
 To build and run a docker image of the API server (assuming you have docker set up on your machine), from the `example` directory in your cloned repo:
 
 ```bash
-docker build . -t cir-api-server
-docker run -p 8080:8080 cir-api-server
+$ docker build . -t cir-api-server
+$ docker run -p 8080:8080 cir-api-server
  * Serving Flask app "./server.py"
  * Environment: production
    WARNING: This is a development server. Do not use it in a production deployment.
@@ -196,15 +196,15 @@ The API will then be available on `http://0.0.0.0:8080`.
 To run the API server locally, you need to ensure all the dependencies are installed on your local machine. A Pipefile is provided to enable pipenv to install the specific dependancies - you first need to ensure you have python (3.6.x recommended) and pipenv installed. Here's an example of doing this on MacOS:
 
 ```bash
-brew install python
-pip install --user pipenv
-pipenv install
+$ brew install python
+$ pip install --user pipenv
+$ pipenv install
 ```
 
 Now that you have the dependencies, you can run the API server itself (from within the `example` directory in your cloned repo)
 
 ```bash
-pipenv run python ./server.py
+$ pipenv run python ./server.py
  * Serving Flask app "server" (lazy loading)
  * Environment: production
    WARNING: This is a development server. Do not use it in a production deployment.
@@ -226,14 +226,14 @@ Clicking on the swagger.json url at the top of the screen allows you to extract 
 You can also use curl to execute simple actions. For example, to retrieve a product CIR for a given barcode:
 
 ```bash
-curl "http://127.0.0.1:5000/v1/product?barcode_id=0125551234508
+$ curl "http://127.0.0.1:5000/v1/product?barcode_id=0125551234508
 {"id": "0125551234508", "barcode_id": "0125551234508", "type": "AIR CONDITIONER", "category": "SPLIT AIR-CONDITIONER", "model": "A-890AM", "brand": "Brand - A", "rating_data": {"efficiency": 4, "energy": 44.66160323, "CO2": 46.61812622, "otherGG": 61.61812622, "water": 241.0, "plastic": 1327.42056, "lifetime": 20.0, "recyclability": 9, "repairability": null}}
 ```
 
 You could also create a new product entry
 
 ```bash
-curl -d '{"barcode_id": "1125761234500", "type": "REFRIDGERATOR", "category": "FRIDGE_FREEZER", "model": "F-13876", "brand": "Brand - F", "rating_data": {"efficiency": 4, "energy": 44.66160323, "CO2": 46.61812622, "otherGG": 61.61812622, "water": 241.0, "plastic": 1327.42056, "lifetime": 20.0, "recyclability": 9}}' -X POST "http://127.0.0.1:5000/v1/product/" -H "Content-Type: application/json"
+$ curl -d '{"barcode_id": "1125761234500", "type": "REFRIDGERATOR", "category": "FRIDGE_FREEZER", "model": "F-13876", "brand": "Brand - F", "rating_data": {"efficiency": 4, "energy": 44.66160323, "CO2": 46.61812622, "otherGG": 61.61812622, "water": 241.0, "plastic": 1327.42056, "lifetime": 20.0, "recyclability": 9}}' -X POST "http://127.0.0.1:5000/v1/product/" -H "Content-Type: application/json"
 ```
 
 ## Resources
