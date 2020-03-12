@@ -54,6 +54,7 @@ The idea is to expand the global product labelling system, to include a comprehe
 * Other (non-CO2) green-house gas emmissions (e.g. from fertilizer)
 * Other comsumables, e.g. water
 * Recyclability
+* Repairability (as part of the Right of Repair initaitive)
 
 One of the key challenges of any such labelling system is that it be, first and foremost, understandable by the intended reader - as well as comprehensive in terms of what it includes. We envisage that eventually this would actuially be printed on products (much like today's Energy Efficiency or Food labelling), but ahead of that we would like to enable POS scanning using smart phones to transalate barcodes into a visible rating.
 
@@ -63,24 +64,31 @@ Creating such a labelling system is a large and global undertaking, which will r
 
 |   |   |
 | - | - |
-| Core-Architecture | Use the provided starter kit to get a basic system up and running that supports Consumer APIs. Maybe you can develop a better architecure? Develop new and interesting ways of displaying the CIR, e.g. via Augmented Reality (AR) on a mobile deice, within search engines, on product listings etc. |
+| Core-Architecture | Use the provided starter kit to get a basic system up and running that supports Consumer APIs. Maybe you can develop a better architecure? |
+| Rating Display | Develop new and interesting ways of displaying the CIR, e.g. via Augmented Reality (AR) on a mobile deice, within search engines, on product listings etc. |
 | Data Science | How best to map raw data into the chosen label. For example, is it better to represent energy as CO2 produced (i.e. it combines amount of energy and use of renewables) or keep these separate? How might we include summary data (e.g. by CO2 per country/region) ahead of having detailed information for a significant number of products? |
 | Labelling Design | Experiment (and maybe user test) and then propose design  of the label that is both comprehensive and understandable by consumers. Use the experience from food labelling and existing Energy Ratings as examples |
 | Additional Storyboards | Develop additional storyboards (and interfaces) for users who are manufactures, administrators and auditors |
 
+If none of the above appeals to you, then no problem! There are, of course, many other aspects of energy sustainability - maybe you could work on one of those. Here are a few other ideas you could explore:
+
+* How might consumers compare their energy use of a particular devices with the usage by others? Maybe they are not using it in an optimal way?
+* For those that have no access to an electicity supply (or one that was very intermitent), how might they gain the knowledge to do get a stable supply? For example, how might a community start by using second-hand car batteries (either as a main source or as a backup), and then use that to move up "the energy ladder"? How can basic communications needs be satisfied using these (for instance basic cell phone charging), and that communication be used to get to the next rung on the ladder?
+
+Or maybe you have a beter idea altogether?
+
 ## How it works
 
-This solution starter idea provides a basic architecture of you to experiment within any of the categories above, and includes:
+This solution starter provides a basic architecture of you to experiment with building a Climate Rating system, as described earlier, and includes:
 
-* A CouchDB NoSQL database layer holding both individual product rating, as well as sumamry data
+* A CouchDB NoSQL database layer holding both individual product rating
 * A basic API server that allows data to insert and extract data from the database. This API is expressed as a Swagger (OpenAPI) document, so you can build your own clients.
 * Deployment tools to stand up the above on the IBM Cloud, within the free-tier plan (i.e. so it is free for you to experiment)
 
 The database is populated with some inital example data, to get you started.
 
-[ Need to add someting about summary data here, dpending on what Binu comes up with ]
-
 ## Diagrams
+
 ![Cloud Impact Rating Starter Architecture](images/EnergySustainabilityArchitecture.png)
 
 ### Flow
@@ -168,16 +176,24 @@ You can run the API server either locally on your machine, or in a Docker contai
 
 #### Run the API Server in a Docker Cntainer
 
+To build and run a docker image of the API server (assuming you have docker set up on your machine), from the `example` directory in your cloned repo:
+
 ```bash
-[TODO: update this]
-cd example
-docker build....
-docker run....
+docker build . -t cir-api-server
+docker run -p 8080:8080 cir-api-server
+ * Serving Flask app "./server.py"
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://0.0.0.0:8080/ (Press CTRL+C to quit)
 ```
+
+The API will then be available on `http://0.0.0.0:8080`.
 
 #### Run the API Server locally
 
-To run the API server locally, you need to ensure all the dependencies are installed on your local machine. A Pipefile is provided to enable pipenv to install the sepcific dependancies - you first need to ensure you have python (3.6.x recommended) and pipenv installed. Here's an example of doing this on MacOS:
+To run the API server locally, you need to ensure all the dependencies are installed on your local machine. A Pipefile is provided to enable pipenv to install the specific dependancies - you first need to ensure you have python (3.6.x recommended) and pipenv installed. Here's an example of doing this on MacOS:
 
 ```bash
 brew install python
@@ -185,10 +201,10 @@ pip install --user pipenv
 pipenv install
 ```
 
-Now that you have the dependencies, you can run the API server itself (from within the `example` folder in your cloned repo)
+Now that you have the dependencies, you can run the API server itself (from within the `example` directory in your cloned repo)
 
 ```bash
-$ pipenv run python ./server.py
+pipenv run python ./server.py
  * Serving Flask app "server" (lazy loading)
  * Environment: production
    WARNING: This is a development server. Do not use it in a production deployment.
@@ -201,7 +217,7 @@ $ pipenv run python ./server.py
 
 The first time you execute an API, the API server will create the product CIR database and upload it with a small amount of dummy data, so that you can experiment.
 
-If you are running locally, the API will be published on 127.0.0.1:5000. The API Server will also render a Swagger/OpenAPI specification for the API, at the root url (i.e. `http://127.0.0.1:5000`):
+As mentioned above, if you are running locally the API will be published on `127.0.0.1:5000`, while if running by docker it will be published on `http://0.0.0.0:8080`. The API Server will also render a Swagger/OpenAPI specification for the API, at this root url:
 
 ![Swagger Example](images/swagger1.png)
 
