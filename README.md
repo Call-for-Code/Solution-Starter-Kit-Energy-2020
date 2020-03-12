@@ -133,7 +133,7 @@ Log into the IBM Cloud and provision a [CouchDB instance using Cloudant](TBD). F
 
 ![Cloudant Instance](images/cloudant1.png)
 
-Once selected, you can chose your Cloudant plan - there is a free tier for simple testing that is sufficent to run this CIR example:
+Once selected, you can chose your Cloudant plan - there is a free tier for simple testing that is sufficent to run this CIR example. It is recommended you  chose `IAM Only` authentication.
 
 ![Cloudant Instance](images/cloudant-2.png)
 
@@ -183,10 +183,12 @@ pipenx install flaskrestx
 
 ### 4. Test API endpoints
 
-If you are running locally, the API will be published on 127.0.0.1:5000/v1, so a simple action to retrieve a CIR for a given barcode can be exeuted using curl"
+The first you execute an API, the API server will create the product CIR database and upload it with a small amount of dummy data, so that you can experiment.
+
+If you are running locally, the API will be published on 127.0.0.1:5000/v1, so a simple action to retrieve a product CIR for a given barcode can be executed using curl:
 
 ```bash
-curl "http://127.0.0.1:5000/v1/cir?barcode=test-barcode
+curl "http://127.0.0.1:5000/v1/product?barcode_id=0125551234508
 ```
 
 [add a lot more here!]
