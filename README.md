@@ -223,11 +223,11 @@ As mentioned above, if you are running locally the API will be published on `127
 
 Clicking on the swagger.json url at the top of the screen allows you to extract the swagger specification, for use by Swagger/OpenAPI tooling to generate a client in the language of your choice.
 
-You can also use curl to execute simple actions. For example, to retrieve a product CIR for a given barcode:
+You can also use curl to execute simple actions. For example, to retrieve a product CIR for a given barcode you can execute a GET with a query parameter:
 
 ```bash
 $ curl "http://127.0.0.1:5000/v1/product?barcode_id=0125551234508
-{"id": "0125551234508", "barcode_id": "0125551234508", "type": "AIR CONDITIONER", "category": "SPLIT AIR-CONDITIONER", "model": "A-890AM", "brand": "Brand - A", "rating_data": {"efficiency": 4, "energy": 44.66160323, "CO2": 46.61812622, "otherGG": 61.61812622, "water": 241.0, "plastic": 1327.42056, "lifetime": 20.0, "recyclability": 9, "repairability": null}}
+[{"id": "0125551234508", "barcode_id": "0125551234508", "type": "AIR CONDITIONER", "category": "SPLIT AIR-CONDITIONER", "model": "A-890AM", "brand": "Brand - A", "rating_data": {"efficiency": 4, "energy": 44.66160323, "CO2": 46.61812622, "otherGG": 61.61812622, "water": 241.0, "plastic": 1327.42056, "lifetime": 20.0, "recyclability": 9, "repairability": null}}]
 ```
 
 You could also create a new product entry

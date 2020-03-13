@@ -100,6 +100,9 @@ class ProductDAO(object):
                 line_count += 1
         print ("complete")
 
+    def list(self):
+        return [x for x in self.cir_db]
+
     def get(self, id):
         try:
             my_document = self.cir_db[id]
@@ -146,12 +149,16 @@ class ProductDAO(object):
 @product_ns.route('/')
 class Product(Resource):
     @api.marshal_with(product)
-    @api.doc(params={'barcode_id': 'The barcode ID of this product'})
+    @api.doc('List products')
+    @api.doc(params={'barcode_id': 'The barcode ID of this product (optional)'})
     def get(self):
         parser = reqparse.RequestParser()
-        parser.add_argument('barcode_id', required=True, location='args')
+        parser.add_argument('barcode_id', required=False, location='args')
         args = parser.parse_args()
-        return ProductDAO().get_by_barcode(args['barcode_id'])
+        if args['barcode_id']:
+            return [ProductDAO().get_by_barcode(args['barcode_id'])]
+        else:
+            return ProductDAO().list()    
 
     @api.marshal_with(product, code=201)
     @api.doc(body=product)
