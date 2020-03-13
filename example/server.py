@@ -36,15 +36,15 @@ product_ns = api.namespace('product', description='User CIR Product Operations')
 #Define the API models we will use (these will show up in the Swagger Specification)
 
 rating = api.model('Rating', {
-    'efficiency': fields.Integer(required=False, description='The efficiency of this item when in use'),
+    'efficiency': fields.Integer(required=False, description='The efficiency-in-use rating (0-9, where 0 is best) of this item'),
     'energy': fields.Float(required=False, description='The energy (J) to produce this item'),
     'CO2': fields.Float(required=False, description='The CO2 released (Kg) to produce this item'),
     'otherGG': fields.Float(required=False, description='The other green house gases released (Kg) to produce this item'),
     'water': fields.Float(required=False, description='The volume of water (litres) to produce this item'),
     'plastic': fields.Float(required=False, description='The amout of plastic (Kg) included in this item'),
     'lifetime': fields.Float(required=False, description='The expected lifetime (years) of this item'),
-    'recyclability': fields.Integer(required=False, description='The recyclability rating (0-9, where 9 is best) of this item'),
-    'repairability': fields.Integer(required=False, description='The Right to Repair rating (0-9, where 9 is best) of this item')
+    'recyclability': fields.Integer(required=False, description='The recyclability rating (0-9, where 0 is best) of this item'),
+    'repairability': fields.Integer(required=False, description='The Right to Repair rating (0-9, where 0 is best) of this item')
 })
 
 product = api.model('Product', {
@@ -90,7 +90,8 @@ class ProductDAO(object):
                             'water': float(row[11]),
                             'plastic': float(row[9]),
                             'lifetime': float(row[10]),
-                            'recyclability': int(row[12])
+                            'recyclability': int(row[12]),
+                            'repairability': int(row[15])
                         }
                     }
                     time.sleep(0.15)     # Have to rate limit it to less than 10 a second, due to free tier
