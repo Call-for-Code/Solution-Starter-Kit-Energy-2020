@@ -109,7 +109,7 @@ class ProductDAO(object):
         return my_document
 
     def get_by_barcode(self, barcode_id):
-        # For now this easy, since id is the same as barcode_id....in the future this would need an
+        # For now this is easy, since id is the same as barcode_id....in the future this would need an
         # index of some such search ability
         try:
             my_document = self.cir_db[barcode_id]
@@ -135,7 +135,6 @@ class ProductDAO(object):
 
     def delete(self, id):
         try:
-            # This isn't quite right yet - it doesn't flush the local cache
             my_document = self.cir_db[id]
             my_document.delete()
         except KeyError:
@@ -147,7 +146,7 @@ class ProductDAO(object):
 @product_ns.route('/')
 class Product(Resource):
     @api.marshal_with(product)
-    @api.doc("Search for the ratings for a given product(s), for example by barcode")
+    @api.doc(params={'barcode_id': 'The barcode ID of this product'})
     def get(self):
         parser = reqparse.RequestParser()
         parser.add_argument('barcode_id', required=True, location='args')
@@ -155,19 +154,19 @@ class Product(Resource):
         return ProductDAO().get_by_barcode(args['barcode_id'])
 
     @api.marshal_with(product, code=201)
-    @api.doc("Register a product and its ratings")
+    @api.doc(body=product)
     def post(self):
         return ProductDAO().create(api.payload), 201
 
 @product_ns.route('/<string:id>')
 class ProductWithID(Resource):
     @api.marshal_with(product)
-    @api.doc("Get the ratings for a given product")
+    @api.doc(params={'id': 'The unique ID of this product'})
     def get(self, id):
         return ProductDAO().get(id)
 
     @api.marshal_with(product)
-    @api.doc("Delete a product")
+    @api.doc(params={'id': 'The unique ID of this product'})
     def delete(self, id):
         return ProductDAO().delete(id)
 
