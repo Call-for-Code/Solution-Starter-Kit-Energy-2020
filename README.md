@@ -56,9 +56,9 @@ The idea is to expand the global product labelling system, to include a comprehe
 * Recyclability
 * Repairability (as part of the Right to Repair initiative)
 
-One of the key challenges of any such labelling system is that it be, first and foremost, understandable by the intended reader - as well as comprehensive in terms of what it includes. We envisage that eventually this would actuially be printed on products (much like today's Energy Efficiency or Food labelling), but ahead of that we would like to enable POS scanning using smart phones to transalate barcodes into a visible rating.
+One of the key challenges of any such labelling system is that it be, first and foremost, understandable by the intended reader - as well as comprehensive in terms of what it includes. We envisage that eventually this would actually be printed on products (much like today's Energy Efficiency or Food labelling), but ahead of that we would like to enable POS scanning using smart phones to transalate barcodes into a visible rating.
 
-One further item that would be benficial to build in would be to include an estimate of the climate impact of the transporation of the product to the Point-of-Sale (POS). By definition, this could most likely not be printed on the product (since the value at each POS might be different) - but perhaps be looked up be displayed via a smart phone (which would know the location), or online.
+One further item that would be benficial to build in would be to include an estimate of the climate impact of the transporation of the product to the Point-of-Sale (POS). By definition, this could most likely not be printed on the product (since the impact at each POS might be different) - but perhaps could be looked up and displayed via a smart phone (which would know the location), or online.
 
 Creating such a labelling system is a large and global undertaking, which will require many underlying components, technologies and agreements to come together. For the Call for Code 2020 challenge on Energy we are encouraging you to experiment with building out some of these components - so these can be brought together to enable this overall labelling system. These components fall into a number of categories:
 
@@ -223,11 +223,11 @@ As mentioned above, if you are running locally the API will be published on `127
 
 Clicking on the swagger.json url at the top of the screen allows you to extract the swagger specification, for use by Swagger/OpenAPI tooling to generate a client in the language of your choice.
 
-You can also use curl to execute simple actions. For example, to retrieve a product CIR for a given barcode:
+You can also use curl to execute simple actions. For example, to retrieve a product CIR for a given barcode you can execute a GET with a query parameter:
 
 ```bash
 $ curl "http://127.0.0.1:5000/v1/product?barcode_id=0125551234508
-{"id": "0125551234508", "barcode_id": "0125551234508", "type": "AIR CONDITIONER", "category": "SPLIT AIR-CONDITIONER", "model": "A-890AM", "brand": "Brand - A", "rating_data": {"efficiency": 4, "energy": 44.66160323, "CO2": 46.61812622, "otherGG": 61.61812622, "water": 241.0, "plastic": 1327.42056, "lifetime": 20.0, "recyclability": 9, "repairability": null}}
+[{"id": "0125551234508", "barcode_id": "0125551234508", "type": "AIR CONDITIONER", "category": "SPLIT AIR-CONDITIONER", "model": "A-890AM", "brand": "Brand - A", "rating_data": {"efficiency": 4, "energy": 44.66160323, "CO2": 46.61812622, "otherGG": 61.61812622, "water": 241.0, "plastic": 1327.42056, "lifetime": 20.0, "recyclability": 9, "repairability": null}}]
 ```
 
 You could also create a new product entry
