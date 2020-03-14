@@ -36,7 +36,7 @@ While the switch to clean energy in our homes will make a real and important imp
 
 ### How can technology help
 
-Whether it's third-party open source projects or IBM Cloud services, technologies like data analytics, visualization, Internet of Things, Open APIs, databases and blockchain can help address global environmental challenges to track energy (and other consumables) that go into making prodcts. Enabling us to select products that have the lowest climate impact can have a real reduction in our personal impact on the planet.
+Whether it's third-party open source projects or IBM Cloud services, technologies like data analytics, visualization, Internet of Things, Open APIs, databases and blockchain can help address global environmental challenges to track energy (and other consumables) that go into making prodcts. Enabling us to select products that have the lowest climate impact can have a real reduction on our personal impact on the planet.
 
 ## Video
 
@@ -46,13 +46,13 @@ Whether it's third-party open source projects or IBM Cloud services, technologie
 
 ## The idea
 
-The idea is to expand the global product labelling system, to include a comprehensive *Climate Impact Rating (CIR)*, which will be visible at the point-of-sale (POS) by consumers (be that in-store or on-line). Such a Climate Impact Rating could eventually include:
+The idea is to expand existing product labelling systems, to include a comprehensive *Climate Impact Rating (CIR)*, which will be visible at the point-of-sale (POS) by consumers (be that in-store or on-line). Such a Climate Impact Rating could eventually include:
 
 * Energy Efficiency while in use (this exists today for many products)
-* Energy (and energy mix) to produce, potentially expressed as CO2 emitted
+* Energy (and energy mix) to produce the product, potentially expressed as CO2 emitted
 * Expected lifetime of product (enabling better comparison between production energy vs in-use energy)
-* Other (non-CO2) green-house gas emmissions (e.g. from fertilizer)
-* Other consumables, e.g. water
+* Other (non-CO2) green-house gas emmissions to produce the product (e.g. from fertilizer)
+* Other consumables, e.g. water, to produce the product
 * Recyclability
 * Repairability (as part of the Right to Repair initiative)
 
@@ -60,7 +60,7 @@ One of the key challenges of any such labelling system is that it be, first and 
 
 One further item that would be benficial to build in would be to include an estimate of the climate impact of the transporation of the product to the Point-of-Sale (POS). By definition, this could most likely not be printed on the product (since the impact at each POS might be different) - but perhaps could be looked up and displayed via a smart phone (which would know the location), or online.
 
-Creating such a labelling system is a large and global undertaking, which will require many underlying components, technologies and agreements to come together. For the Call for Code 2020 challenge on Energy we are encouraging you to experiment with building out some of these components - so these can be brought together to enable this overall labelling system. These components fall into a number of categories:
+Creating such a labelling system is a large and global undertaking, which will require many underlying components, technologies and agreements to come together. For the Call for Code 2020 challenge on Energy, we are encouraging you to experiment with building out some of these components - so these can be brought together to enable this overall labelling system. These components fall into a number of categories:
 
 |   |   |
 | - | - |
@@ -72,8 +72,8 @@ Creating such a labelling system is a large and global undertaking, which will r
 
 If none of the above appeals to you, then no problem! There are, of course, many other aspects of energy sustainability - maybe you could work on one of those. Here are a few other ideas you could explore:
 
-* How might consumers compare their energy use of a particular devices with the usage by others? Maybe they are not using it in an optimal way?
-* For those that have no access to an electicity supply (or one that was very intermitent), how might they gain the knowledge to do get a stable supply? For example, how might a community start by using second-hand car batteries (either as a main source or as a backup), and then use that to move up "the energy ladder"? How can basic communications needs be satisfied using these (for instance basic cell phone charging), and that communication be used to get to the next rung on the ladder?
+* How might a consumer compare their energy use of a particular device, to the usage by others? Maybe they are not using it in an optimal way? An example solution might be a smart-plug (that measures energy usage), a site that lists typical consumtion (by product) and for you to see where you rank? Or maybe you can think of a better way?
+* For those who have no access to electicity, or one that is very intermitent (which is around 1 in 7 people on the planet), how might they gain the knowledge to do get to having a stable supply? For example, how might a community start by using second-hand car batteries (either as a main source or as a backup), and then use that to move up "the energy ladder"? How can basic communications needs be satisfied using these intermim stages (for instance basic cell phone charging), and that this communication can then be used to get to the next rung on the ladder?
 
 Or maybe you have a better idea altogether?
 
