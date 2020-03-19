@@ -134,7 +134,13 @@ Also, you'll need an [IBM Cloud account](https://cloud.ibm.com), with the latest
 
 ### 1. Clone this repo
 
-Clone this repo, so that you have a copy of the API server locally on your machine.
+Clone this repo, so that you have a copy of the API server locally on your machine:
+
+```bash
+$ git clone https://github.com/Call-for-Code/Solution-Starter-Kit-Energy-2020.git
+```
+
+A directory will have been created called `Solution-Starter-Kit-Energy-2020`, and within that an `example` directory that contains the source of the API Server.
 
 ### 2. Provision a CouchDB instance using Cloudant
 
