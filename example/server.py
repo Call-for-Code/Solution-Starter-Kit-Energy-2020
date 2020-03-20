@@ -33,7 +33,7 @@ client = Cloudant.iam(
 
 product_ns = api.namespace('product', description='User CIR Product Operations')
 
-#Define the API models we will use (these will show up in the Swagger Specification)
+# Define the API models we will use (these will show up in the Swagger Specification).
 
 rating = api.model('Rating', {
     'efficiency': fields.Integer(required=False, description='The efficiency-in-use rating (0-9, where 0 is best) of this item'),
@@ -60,6 +60,7 @@ product = api.model('Product', {
 db_name = 'cir-db'
 
 # A Data Access Object to handle the reading and writing of Product records to the Cloudant DB
+
 class ProductDAO(object):
     def __init__(self):
         if db_name in client.all_dbs():
@@ -146,12 +147,17 @@ class ProductDAO(object):
 
 # Handlers for the actual API urls
 
-@product_ns.route('/')
+# In a more production orientated version, you might well split these endpoints into
+# those for a consumer (which is really just "look up by barcode"), and those that
+# allow manufacturers to publish their product data.
+
+@product_ns.route('')
 class Product(Resource):
     @api.marshal_with(product)
     @api.doc('List products')
     @api.doc(params={'barcode_id': 'The barcode ID of this product (optional)'})
     def get(self):
+        # Currently we support either a full list, or query by barcode_id.
         parser = reqparse.RequestParser()
         parser.add_argument('barcode_id', required=False, location='args')
         args = parser.parse_args()
